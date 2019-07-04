@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import Links from '../api/links';
+import Links from '../api/room';
 
 class Info extends Component {
   render() {
