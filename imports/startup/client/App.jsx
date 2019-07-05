@@ -1,19 +1,22 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch} from 'react-router-dom';
-import Home from '/imports/ui/Home';
-import Accounts from '/imports/ui/modules/Accounts';
-import Users from '/imports/ui/modules/Users';
 import Rooms from '/imports/ui/modules/Rooms';
+import Inscription from '/imports/ui/modules/Inscription';
+import Connection from '/imports/ui/modules/Connection';
+import Parametre from '/imports/ui/modules/Parametre';
+import Missing from '/imports/ui/modules/Missing';
+import Verify from '/imports/ui/modules/Verify';
 import MyRoute from '/imports/ui/components/MyRoute';
 
 const App = () => (
     <Router>
         <Switch>
-            <MyRoute path="/home" component={Home} logged/>
+            <MyRoute path="/rooms" component={Rooms} logged/>
             <MyRoute path="/signup" component={Inscription}/>
             <MyRoute path="/signin" component={Connection}/>
-            <MyRoute path="/articles/add" component={ArticleForm} logged/>
-            <MyRoute path="/articles/edit/:id" component={ArticleForm} logged/>
+            <MyRoute path="/settings" component={Parametre} logged/>
+            <MyRoute path="/missing" component={Missing}/>
+            <MyRoute path="/verify" component={Verify} logged/>
         </Switch>
     </Router>
 );
