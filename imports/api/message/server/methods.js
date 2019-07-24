@@ -1,13 +1,13 @@
 import {Meteor} from 'meteor/meteor';
-import Articles from '..';
+import Messages from '..';
 
 Meteor.methods({
-    "articles.create"({title, content}) {
+    "messages.create"({title, content}) {
         if (!this.userId) {
             throw new Meteor.Error('403', 'You must be connected');
         }
 
-        Articles.insert({
+        Messages.insert({
             title,
             content,
             createdAt: new Date(),
@@ -15,31 +15,31 @@ Meteor.methods({
         });
     },
 
-    "articles.update"({id, title, content}) {
+    "messages.update"({id, title, content}) {
         if (!this.userId) {
             throw new Meteor.Error('403', 'You must be connected');
         }
 
-        const article = Articles.findOne(id);
+        const message = Messages.findOne(id);
 
-        if (article.userId !== this.userId) {
+        if (message.userId !== this.userId) {
             throw new Meteor.Error('403', 'You must be the owner of article');
         }
 
-        Articles.update(id, {$set: {title, content}});
+        Messages.update(id, {$set: {title, content}});
     },
 
-    "articles.remove"({id}) {
+    "messages.remove"({id}) {
         if (!this.userId) {
             throw new Meteor.Error('403', 'You must be connected');
         }
 
-        const article = Articles.findOne(id);
+        const message = Messages.findOne(id);
 
-        if (article.userId !== this.userId) {
+        if (message.userId !== this.userId) {
             throw new Meteor.Error('403', 'You must be the owner of article');
         }
 
-        Articles.remove(id);
+        Messages.remove(id);
     },
 });

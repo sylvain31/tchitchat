@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
-import Articles from '..';
+import Messages from '..';
 
-Meteor.publish('articles.lasts', () => {
-  return Articles.find({}, {
+Meteor.publish('messages.lasts', () => {
+  return Messages.find({}, {
     sort: { createdAt: -1 },
     limit: 50,
     // skip: 50,

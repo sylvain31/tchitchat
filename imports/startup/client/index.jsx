@@ -1,8 +1,8 @@
 import React from 'react';
 import {Meteor} from 'meteor/meteor';
-import {Hydrate} from 'react-dom';
+import {hydrate} from 'react-dom';
 import App from './App';
 
 Meteor.startup(() => {
-    Hydrate(<App/>, document.getElementById('react-target'));
+    hydrate(<App/>, document.getElementById('react-target'));
 });

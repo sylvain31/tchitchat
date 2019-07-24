@@ -1,13 +1,13 @@
 import {Meteor} from 'meteor/meteor';
-import Articles from '..';
+import Rooms from '..';
 
 Meteor.methods({
-    "articles.create"({title, content}) {
+    "rooms.create"({title, content}) {
         if (!this.userId) {
             throw new Meteor.Error('403', 'You must be connected');
         }
 
-        Articles.insert({
+        Rooms.insert({
             title,
             content,
             createdAt: new Date(),
@@ -15,31 +15,31 @@ Meteor.methods({
         });
     },
 
-    "articles.update"({id, title, content}) {
+    "rooms.update"({id, title, content}) {
         if (!this.userId) {
             throw new Meteor.Error('403', 'You must be connected');
         }
 
-        const article = Articles.findOne(id);
+        const room = Rooms.findOne(id);
 
-        if (article.userId !== this.userId) {
+        if (room.userId !== this.userId) {
             throw new Meteor.Error('403', 'You must be the owner of article');
         }
 
-        Articles.update(id, {$set: {title, content}});
+        Rooms.update(id, {$set: {title, content}});
     },
 
-    "articles.remove"({id}) {
+    "rooms.remove"({id}) {
         if (!this.userId) {
             throw new Meteor.Error('403', 'You must be connected');
         }
 
-        const article = Articles.findOne(id);
+        const room = Rooms.findOne(id);
 
-        if (article.userId !== this.userId) {
+        if (room.userId !== this.userId) {
             throw new Meteor.Error('403', 'You must be the owner of article');
         }
 
-        Articles.remove(id);
+        Rooms.remove(id);
     },
 });
